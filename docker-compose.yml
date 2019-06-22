@@ -1,0 +1,35 @@
+version: "3" 
+services:
+
+  nginx:
+    image: nginx:1.13
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    volumes:
+      - "./app1:/var/www/html/app1"
+      - "./app2:/var/www/html/app2"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "80:80"
+    depends_on:
+      - php1
+      - php2
+    container_name: nginx
+
+  php1:
+    build:
+      context: .
+      dockerfile: app.php1
+    volumes:
+      - "./app1:/var/www/html"
+    container_name: php1
+
+  php2:
+    build:
+      context: .
+      dockerfile: app.php2
+    volumes:
+      - "./app2:/var/www/html"
+    container_name: php2
+

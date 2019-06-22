@@ -1,0 +1,5 @@
+/moodledata/
+/moodledb/
+/bconhecimentodb/
+*.DS_Store
+.idea/
